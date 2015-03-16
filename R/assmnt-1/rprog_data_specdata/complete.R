@@ -5,30 +5,34 @@
 # our target is to create a data frame which tells the number of
 # complete sets in all the given range of ids
 
-complete <- function(directory,id)
+complete <- function(directory,id=1:332)
 {
-	setwd(directory)
-	x <- id[1]
-	y <- id[length(id)]
-	mtrx <- matrix(0,ncol = 2,nrow = (x*y), dimnames = list(1:(y - x + 1),c("id","nobs")))
-	i <- 1
-	while(i <= (y - x + 1))
+	dirc <- "C:/Users/private/r/r data coursera/assment1/"
+	setwd(paste(dirc,directory,sep="")) # setting the directory 
+	total <- length(id)
+
+	mtrx <- matrix(0,ncol = 2,nrow = total,dimnames=list(1:total,c("id","nobs")))
+	cntr <- 1
+
+
+	while(cntr <= total)
 	{
+		i <- id[cntr]
 		if(i > 332)
 		{
 			print("file do not exist , check the file id again")
 		}
 		else if(i >= 100) # condition to set id as name
 		{
-			data <- data.matrix(read.csv(paste(c(as.character(i),".csv"),collapse="")))
+			data <- data.matrix(read.csv(paste(c(as.character(i),".csv"),collapse="",sep="")))
 		}
 		else if(i < 10)
 		{
-			data <- data.matrix(read.csv(paste(c("0","0",as.character(i),".csv"),collapse="")))
+			data <- data.matrix(read.csv(paste(c("0","0",as.character(i),".csv"),collapse="",sep="")))
 		}
 		else 
 		{
-			data <- data.matrix(read.csv(paste(c("0",as.character(i),".csv"),collapse="")))		
+			data <- data.matrix(read.csv(paste(c("0",as.character(i),".csv"),collapse="",sep="")))		
 		}
 		
 		j <- 1
@@ -42,9 +46,9 @@ complete <- function(directory,id)
 			}
 			j <- j + 1
 		}
-		mtrx[i,1] <- i 
-		mtrx[i,2] <- cnt
-		i <- i + 1
+		mtrx[cntr,1] <- i 
+		mtrx[cntr,2] <- cnt
+		cntr <- cntr + 1
 	}		
 	frame_out <- as.data.frame(mtrx)
 	print(frame_out)
