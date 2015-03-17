@@ -19,7 +19,7 @@ standard_error <- function(number_of_samples)
 		w <- runif(no_samples,min=1,max=100)
 		SAMPLE_var <- ((w-mean(w))*(w-mean(w)))/(no_samples-1)
 		
-#		abline(v=mean(w),lwd=2,col="blue")
+		abline(v=mean(w),lwd=2,col="blue")
 		arr <- c(arr,sqrt(SAMPLE_var))
 		i <- i + 1
 	}
