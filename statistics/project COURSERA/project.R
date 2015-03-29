@@ -67,14 +67,19 @@ exp_clt <- function(n,lambda,simulation)
 		i <- i + 1
 	}	
 # --------------------- part 1 --------------------------------------------------
+
 	print(paste("differnce in mean :",((1/lambda)-mean(mns))))
+
 # --------------------- part 2 --------------------------------------------------
+
 	print(paste("differnce in standard deviation :",((1/lambda)-sd(mns))))
+
 # --------------------- part 3 --------------------------------------------------
+
 	par(mfrow=c(1,2))
-	plot(x,y,type="l",lwd=2,col="red",main="plot of exp distribution")
-	abline(v=(1/lambda))
-	hist(mns)
+	plot(x,y,type="l",lwd=2,col="red",main="plot of exp distribution:green line is mean")
+	abline(v=(1/lambda),col="green")
+	hist(mns,main="green line is mean")
 	abline(v=mean(mns))
 		
 }
